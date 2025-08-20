@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     styledComponents: true
   },
   images: {
-    domains: ['image.tmdb.org'],
+    domains: ['image.tmdb.org', 'occ-0-8407-90.1.nflxso.net', 'static.wikia.nocookie.net'],
   },
 };
 

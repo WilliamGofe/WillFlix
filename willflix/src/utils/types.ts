@@ -1,0 +1,31 @@
+// Tipagem para filme ou série
+export interface MediaItem {
+    adult: boolean;
+    backdrop_path: string;
+    first_air_date?: string;
+    genre_ids: number[];
+    id: number;
+    media_type: "movie" | "tv";
+    name?: string;
+    origin_country?: string[];
+    original_language: string;
+    original_name?: string;
+    original_title?: string;
+    overview: string;
+    popularity: number;
+    poster_path: string;
+    release_date?: string;
+    title?: string;
+    video?: boolean;
+    vote_average: number;
+    vote_count: number;
+  }
+
+
+export interface iThemes {
+    colors: {
+      background: string;
+      text: string;
+      primary: string;
+    },
+  };  
