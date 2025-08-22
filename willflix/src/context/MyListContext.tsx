@@ -1,7 +1,7 @@
 "use client";
 import React, { createContext, useContext, useState } from "react";
 import { iThemes, MediaItem } from "@/utils/types";
-import { initialList } from "@/utils/MockMyList";
+import { InitialList } from "@/utils/MockMyList";
 
 interface MyListContextType {
   myList: MediaItem[];
@@ -12,7 +12,7 @@ interface MyListContextType {
 const MyListContext = createContext<MyListContextType | undefined>(undefined);
 
 export const MyListProvider = ({ children, themes }: { children: React.ReactNode, themes: iThemes }) => {
-  const [myList, setMyList] = useState<MediaItem[]>(initialList);
+  const [myList, setMyList] = useState<MediaItem[]>(InitialList);
 
   const addToMyList = (item: MediaItem) => {
     setMyList((prev) => {
@@ -32,7 +32,7 @@ export const MyListProvider = ({ children, themes }: { children: React.ReactNode
   );
 };
 
-export const useMyList = () => {
+export const UseMyList = () => {
   const context = useContext(MyListContext);
   if (!context) throw new Error("useMyList deve ser usado dentro do MyListProvider");
   return context;

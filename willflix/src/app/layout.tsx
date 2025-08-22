@@ -1,9 +1,5 @@
-'use client'
-
-import { ThemeProvider } from 'styled-components';
-import { themes } from '../styles/themes';
-import { GlobalStyles } from '../styles/GlobalStyles';
-import { MyListProvider } from '@/context/MyListContext';
+import React from 'react';
+import { ClientProviders } from '@/providers/ClientProviders';
 
 export default function RootLayout({
   children,
@@ -11,13 +7,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR">
+   <html lang="pt-BR">
       <head />
       <body>
-        <MyListProvider themes={themes}>
-          <GlobalStyles />
+        <ClientProviders>
           {children}
-        </MyListProvider>
+        </ClientProviders>
       </body>
     </html>
   );

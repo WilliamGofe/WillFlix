@@ -23,6 +23,7 @@ const Logo = styled.h1`
   color: #e50914;
   font-weight: bold;
   font-size: 1.5rem;
+  cursor: pointer;
 `;
 
 const Actions = styled.div`
@@ -126,12 +127,14 @@ export default function Header() {
       )
     : [];
 
+    console.log(searchOpen)
   return (
     <Container>
-      <Logo>WillFlix</Logo>
+      <Logo onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>WillFlix</Logo>
       <Actions>
         <SearchContainer>
           <SearchInput
+            onBlur={() => setSearchOpen(false)}
             className={searchOpen ? 'open' : ''}
             type="text"
             placeholder="Buscar..."
@@ -139,7 +142,7 @@ export default function Header() {
             onChange={(e) => setQuery(e.target.value)}
           />
           <SearchIcon size={20} onClick={() => setSearchOpen(!searchOpen)} />
-          {filtered.length > 0 && (
+          {(filtered.length > 0 && searchOpen) && (
             <ResultsDropdown>
               {filtered.map((movie) => (
                 <ResultItem key={movie.id} onClick={() => setSelectedMovie(movie)}>

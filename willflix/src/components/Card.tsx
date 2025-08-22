@@ -1,7 +1,6 @@
 'use client';
 import styled from 'styled-components';
 import Image from 'next/image';
-import { useMyList } from '@/context/MyListContext';
 import { useState } from 'react';
 import Movie from './Movie';
 
