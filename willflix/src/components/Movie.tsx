@@ -149,14 +149,17 @@ function renderStars(vote_average: number) {
 }
 
 export default function Movie({ movie, onClose, bannerComponent }: ModalProps) {
-  if (!movie) return null;
-  const { addToMyList, myList, removeFromMyList }: any = UseMyList(); 
+  const { addToMyList, myList, removeFromMyList } = UseMyList(); // <-- Mova para o topo!
   const [onList, setOnList] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setOnList(myList.some((m: MediaItem) => m.id === movie.id));
+    if (movie) {
+      setOnList(myList.some((m: MediaItem) => m.id === movie.id));
+    }
   }, [myList, movie]);
+
+  if (!movie) return null;
 
   const handleListClick = () => {
     if (onList) {
@@ -168,7 +171,7 @@ export default function Movie({ movie, onClose, bannerComponent }: ModalProps) {
       addToMyList(movie);
     }
   };
-console.log(movie.backdrop_path)
+
   return (
     <Overlay onClick={onClose}>
       <ModalContainer onClick={(e) => e.stopPropagation()}>

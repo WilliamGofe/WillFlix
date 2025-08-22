@@ -2,8 +2,8 @@ import { fetchFromTMDB, requests } from '../lib/tmdb';
 import Banner from '../components/Banner';
 import Row from '../components/Row';
 import Header from '../components/Header';
-import { AllMoviesProvider } from '@/context/AllMoviesContext';
-import { MediaItem } from '@/utils/types';
+import { AllMoviesProvider } from '../context/AllMoviesContext';
+import { MediaItem } from '../utils/types';
 
 export default async function Page() {
   const [trending, topRated, actionMovies] = await Promise.all([
