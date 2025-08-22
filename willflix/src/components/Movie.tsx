@@ -2,13 +2,14 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import { MediaItem } from '@/utils/types';
-import { useMyList } from '@/context/MyListContext';
+import { UseMyList } from '@/context/MyListContext';
 import { useEffect, useState } from 'react';
 import { Skeleton } from './Skeleton';
 
 interface ModalProps {
   movie: MediaItem | null;
   onClose: () => void;
+  bannerComponent?: boolean;
 }
 
 const Overlay = styled.div`
@@ -147,9 +148,9 @@ function renderStars(vote_average: number) {
   ));
 }
 
-export default function Movie({ movie, onClose }: ModalProps) {
+export default function Movie({ movie, onClose, bannerComponent }: ModalProps) {
   if (!movie) return null;
-  const { addToMyList, myList, removeFromMyList }: any = useMyList(); 
+  const { addToMyList, myList, removeFromMyList }: any = UseMyList(); 
   const [onList, setOnList] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -160,6 +161,9 @@ export default function Movie({ movie, onClose }: ModalProps) {
   const handleListClick = () => {
     if (onList) {
       removeFromMyList(movie.id);
+      if (bannerComponent) {
+        onClose();
+      }
     } else {
       addToMyList(movie);
     }

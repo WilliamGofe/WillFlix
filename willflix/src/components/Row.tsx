@@ -9,6 +9,7 @@ interface IRowWrapper {
 }
 const RowWrapper = styled.div<IRowWrapper>`
   margin: ${(props) => props.margin || '2rem 0'};
+  z-index: 3;
 `;
 
 const RowTitle = styled.h2`
