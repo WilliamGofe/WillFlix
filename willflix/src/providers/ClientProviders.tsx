@@ -2,7 +2,7 @@
 
 import { themes } from '../styles/themes';
 import { GlobalStyles } from '../styles/GlobalStyles';
-import { MyListProvider } from '@/context/MyListContext';
+import { MyListProvider } from '../context/MyListContext';
 
 export function ClientProviders({ children }: { children: React.ReactNode }) {
   return (

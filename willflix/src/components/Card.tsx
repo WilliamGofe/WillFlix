@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import { useState } from 'react';
 import Movie from './Movie';
+import { MediaItem } from '@/utils/types';
 
 const CardWrapper = styled.div`
   width: 200px;
@@ -67,7 +68,7 @@ const PlayButton = styled.button`
   }
 `;
 
-export default function Card({ movie }: { movie: any }) {
+export default function Card({ movie }: { movie: MediaItem }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {

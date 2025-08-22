@@ -3,6 +3,7 @@
 import styled from 'styled-components';
 import Card from './Card';
 import { useRef, useState } from 'react';
+import { MediaItem } from '@/utils/types';
 
 interface IRowWrapper {
   margin?: string;
@@ -28,7 +29,7 @@ const RowContent = styled.div`
   }
 `;
 
-export default function Row({ title, movies, margin }: { title: string, movies: any[], margin?: string }) {
+export default function Row({ title, movies, margin }: { title: string, movies: MediaItem[], margin?: string }) {
   const rowRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);

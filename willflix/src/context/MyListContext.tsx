@@ -1,7 +1,7 @@
 "use client";
 import React, { createContext, useContext, useState } from "react";
-import { iThemes, MediaItem } from "@/utils/types";
-import { InitialList } from "@/utils/MockMyList";
+import { iThemes, MediaItem } from "../utils/types";
+import { InitialList } from "../utils/MockMyList";
 
 interface MyListContextType {
   myList: MediaItem[];
@@ -11,7 +11,7 @@ interface MyListContextType {
 
 const MyListContext = createContext<MyListContextType | undefined>(undefined);
 
-export const MyListProvider = ({ children, themes }: { children: React.ReactNode, themes: iThemes }) => {
+export const MyListProvider = ({ children }: { children: React.ReactNode, themes: iThemes }) => {
   const [myList, setMyList] = useState<MediaItem[]>(InitialList);
 
   const addToMyList = (item: MediaItem) => {

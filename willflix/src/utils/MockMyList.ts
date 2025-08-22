@@ -1,7 +1,7 @@
 import { MediaItem } from "./types";
 
 // Estado inicial mockado
-export let InitialList: MediaItem[] = [
+export const InitialList: MediaItem[] = [
       {
       adult: false,
       backdrop_path: "/qg8Gv2w0dDL8cMsG2QO2hWp58wy.jpg",

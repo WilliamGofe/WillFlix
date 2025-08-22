@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import Row from './Row';
 import { UseMyList } from '../context/MyListContext';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Movie from './Movie';
 import { Skeleton } from './Skeleton';
 
 import type { CSSProperties } from 'react';
-import { InitialList } from '@/utils/MockMyList';
+import { InitialList } from '../utils/MockMyList';
 
 const Container = styled.section<{ $height?: CSSProperties['height'], $alignItems?: string }>`
   position: relative;
@@ -81,8 +81,8 @@ const PlayButton = styled.button`
 export default function Banner() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const { myList }: any = UseMyList();
-  let myListExist = myList && myList.length > 0;
+  const { myList } = UseMyList();
+  const myListExist = myList && myList.length > 0;
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };

@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { MdNotifications } from 'react-icons/md';
 import { useState } from 'react';
-import { useAllMovies } from '@/context/AllMoviesContext';
+import { useAllMovies } from '../context/AllMoviesContext';
 import Movie from './Movie';
 import Image from 'next/image';
-import { MediaItem } from '@/utils/types';
+import { MediaItem } from '../utils/types';
 
 const Container = styled.header`
   display: flex;
