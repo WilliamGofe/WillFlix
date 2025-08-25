@@ -1,5 +1,6 @@
 import React from 'react';
 import { ClientProviders } from '../providers/ClientProviders';
+import StyledComponentsRegistry from '../lib/registry';
 
 export default function RootLayout({
   children,
@@ -11,7 +12,9 @@ export default function RootLayout({
       <head />
       <body>
         <ClientProviders>
-          {children}
+          <StyledComponentsRegistry>
+             {children}         
+          </StyledComponentsRegistry>
         </ClientProviders>
       </body>
     </html>
