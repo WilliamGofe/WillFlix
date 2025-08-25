@@ -48,7 +48,7 @@ export default function Row({ title, movies, margin }: { title: string, movies: 
     if (!isDragging || !rowRef.current) return;
     e.preventDefault();
     const x = e.pageX - rowRef.current.offsetLeft;
-    const walk = (x - startX) * 2; // velocidade do arraste
+    const walk = (x - startX) * 2; 
     rowRef.current.scrollLeft = scrollLeft - walk;
   };
 

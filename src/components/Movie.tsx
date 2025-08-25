@@ -1,7 +1,7 @@
 'use client';
 import styled from 'styled-components';
 import Image from 'next/image';
-import { MediaItem } from '..//utils/types';
+import { MediaItem } from '../utils/types';
 import { UseMyList } from '../context/MyListContext';
 import { useEffect, useState } from 'react';
 import { Skeleton } from './Skeleton';
@@ -149,7 +149,7 @@ function renderStars(vote_average: number) {
 }
 
 export default function Movie({ movie, onClose, bannerComponent }: ModalProps) {
-  const { addToMyList, myList, removeFromMyList } = UseMyList(); // <-- Mova para o topo!
+  const { addToMyList, myList, removeFromMyList } = UseMyList(); 
   const [onList, setOnList] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
