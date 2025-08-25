@@ -7,6 +7,7 @@ import { useAllMovies } from '../context/AllMoviesContext';
 import Movie from './Movie';
 import Image from 'next/image';
 import { MediaItem } from '../utils/types';
+import { useSearch } from '@/context/SearchContext';
 
 const Container = styled.header`
   display: flex;
@@ -31,6 +32,7 @@ const Actions = styled.div`
   align-items: center;
   gap: 1rem;
   position: relative;
+  margin-left: 12px;
 `;
 
 const SearchContainer = styled.div`
@@ -51,6 +53,9 @@ const SearchInput = styled.input`
   &.open {
     width: 250px;
     opacity: 1;
+  @media (max-width: 500px) {
+    width: 120px;
+  }
   }
 
   &:focus {
@@ -90,6 +95,10 @@ const ResultsDropdown = styled.div`
   max-height: 400px;
   overflow-y: auto;
   z-index: 20;
+
+  @media (max-width: 500px) {
+    width: 200px;
+  }
 `;
 
 const ResultItem = styled.div`
@@ -117,7 +126,8 @@ const ResultItem = styled.div`
 
 export default function Header() {
   const { allMovies } = useAllMovies();
-  const [searchOpen, setSearchOpen] = useState(false);
+  const { isSearchOpen, setIsSearchOpen } = useSearch();
+
   const [query, setQuery] = useState('');
   const [selectedMovie, setSelectedMovie] = useState<MediaItem | null>(null);
 
@@ -127,25 +137,36 @@ export default function Header() {
       )
     : [];
 
-    console.log(searchOpen)
+  const handleSearchToggle = () => {
+    setIsSearchOpen((prev) => !prev);
+    if (isSearchOpen) {
+      setQuery('');
+    }
+  };
+
+  const handleSelectMovie = (movie: MediaItem) => {
+    setSelectedMovie(movie);
+    setQuery('');
+    setIsSearchOpen(false);
+  };
+
   return (
     <Container>
       <Logo onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>WillFlix</Logo>
       <Actions>
         <SearchContainer>
           <SearchInput
-            onBlur={() => setSearchOpen(false)}
-            className={searchOpen ? 'open' : ''}
+            className={isSearchOpen ? 'open' : ''}
             type="text"
             placeholder="Buscar..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
-          <SearchIcon size={20} onClick={() => setSearchOpen(!searchOpen)} />
-          {(filtered.length > 0 && searchOpen) && (
+          <SearchIcon size={20} onClick={handleSearchToggle} />
+          {(filtered.length > 0 && isSearchOpen) && (
             <ResultsDropdown>
               {filtered.map((movie) => (
-                <ResultItem key={movie.id} onClick={() => setSelectedMovie(movie)}>
+                <ResultItem key={movie.id} onClick={() => handleSelectMovie(movie)}>
                   <Image
                     src={`https://image.tmdb.org/t/p/w92${movie.poster_path}`}
                     alt={movie.title || movie.name || ''}

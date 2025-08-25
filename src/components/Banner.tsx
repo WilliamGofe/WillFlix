@@ -19,7 +19,12 @@ const Container = styled.section<{ $height?: CSSProperties['height'], $alignItem
   justify-content: flex-end;
   align-items: ${({ $alignItems }) => $alignItems || 'baseline'};
   padding: 2rem;
-  overflow: hidden;
+  overflow:hidden; 
+  scroll-behavior: smooth;
+
+  @media (max-width: 500px) {
+    padding: 0.7rem;
+  }
 `;
 
 const Background = styled.div<{ $imageUrl: string }>`
@@ -108,7 +113,10 @@ export default function Banner() {
         <Image style={{ zIndex: '4' }} width='700' height='210' src='https://static.wikia.nocookie.net/international-entertainment-project/images/1/18/Wednesday_-_logo_%28English%29.png/revision/latest?cb=20230109170953' alt='Logo'></Image>
       }
       {myListExist &&
-        <Row title="Minha Lista" movies={myList} margin="3em 0 0 0" />
+        <div style={{ width: '100%', zIndex: '4' }}>
+          <Row title="Minha Lista" movies={myList} margin="3em 0 0 0" />
+        </div>
+
       }
       {isModalOpen && <Movie movie={myListExist ? myList[0] : InitialList[0]} onClose={handleCloseModal} bannerComponent={true} />}
     </Container>

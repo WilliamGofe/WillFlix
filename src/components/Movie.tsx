@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import { MediaItem } from '../utils/types';
 import { UseMyList } from '../context/MyListContext';
-import { useEffect, useState } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 import { Skeleton } from './Skeleton';
+import { useSearch } from '../context/SearchContext';
 
 interface ModalProps {
   movie: MediaItem | null;
@@ -150,14 +151,16 @@ function renderStars(vote_average: number) {
 
 export default function Movie({ movie, onClose, bannerComponent }: ModalProps) {
   const { addToMyList, myList, removeFromMyList } = UseMyList(); 
+  const { setIsSearchOpen } = useSearch();
   const [onList, setOnList] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (movie) {
+      setIsSearchOpen(false);
       setOnList(myList.some((m: MediaItem) => m.id === movie.id));
     }
-  }, [myList, movie]);
+  }, [myList, movie, setIsSearchOpen]);
 
   if (!movie) return null;
 
@@ -174,7 +177,7 @@ export default function Movie({ movie, onClose, bannerComponent }: ModalProps) {
 
   return (
     <Overlay onClick={onClose}>
-      <ModalContainer onClick={(e) => e.stopPropagation()}>
+      <ModalContainer onClick={(e: MouseEvent) => e.stopPropagation()}>
       {isLoading && <Skeleton  />}
         <BackgroundImage
           src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path || movie.poster_path}`}
