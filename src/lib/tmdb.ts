@@ -12,7 +12,25 @@ export const requests = {
 };
 
 export async function fetchFromTMDB(endpoint: string) {
-  const res = await fetch(`${BASE_URL}${endpoint}`);
-  if (!res.ok) throw new Error('Erro ao buscar dados da TMDB');
-  return res.json();
+  try {
+
+    const apiKey = process.env.TMDB_API_KEY || process.env.NEXT_PUBLIC_TMDB_API_KEY;
+
+    if (!apiKey) {
+      console.error("TMDB API Key não definida!");
+      return { results: [] }; 
+    }
+
+    const res = await fetch(`${BASE_URL}${endpoint}?api_key=${apiKey}`);
+
+    if (!res.ok) {
+      console.error("Erro ao buscar dados da TMDB:", res.status, res.statusText);
+      return { results: [] }; 
+    }
+
+    return res.json();
+  } catch (err) {
+    console.error("Erro na request TMDB:", err);
+    return { results: [] }; 
+  }
 }
