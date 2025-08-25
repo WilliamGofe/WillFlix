@@ -14,7 +14,7 @@ export const requests = {
 export async function fetchFromTMDB(endpoint: string) {
   try {
 
-    const apiKey = process.env.TMDB_API_KEY || process.env.NEXT_PUBLIC_TMDB_API_KEY;
+    const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
     if (!apiKey) {
       console.error("TMDB API Key não definida!");
