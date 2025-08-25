@@ -1,5 +1,5 @@
 import React from 'react';
-import { ClientProviders } from '@/providers/ClientProviders';
+import { ClientProviders } from '../providers/ClientProviders';
 
 export default function RootLayout({
   children,

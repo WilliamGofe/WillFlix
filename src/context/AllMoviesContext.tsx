@@ -1,6 +1,6 @@
 'use client';
 import { createContext, useContext, ReactNode } from 'react';
-import { MediaItem } from '@/utils/types';
+import { MediaItem } from '../utils/types';
 
 interface AllMoviesContextProps {
   allMovies: MediaItem[];

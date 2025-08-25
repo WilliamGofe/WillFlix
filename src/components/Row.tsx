@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 import Card from './Card';
 import { useRef, useState } from 'react';
-import { MediaItem } from '@/utils/types';
+import { MediaItem } from '../utils/types';
 
 interface IRowWrapper {
   margin?: string;

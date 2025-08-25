@@ -1,8 +1,8 @@
 'use client';
 import styled from 'styled-components';
 import Image from 'next/image';
-import { MediaItem } from '@/utils/types';
-import { UseMyList } from '@/context/MyListContext';
+import { MediaItem } from '..//utils/types';
+import { UseMyList } from '../context/MyListContext';
 import { useEffect, useState } from 'react';
 import { Skeleton } from './Skeleton';
 
